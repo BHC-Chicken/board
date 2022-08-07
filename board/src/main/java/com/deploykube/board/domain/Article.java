@@ -1,6 +1,5 @@
 package com.deploykube.board.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,7 +24,6 @@ import java.util.Set;
                 @Index(columnList = "hashtag"),
                 @Index(columnList = "createdAt"),
                 @Index(columnList = "createdBy"),
-                @Index(columnList = "title"),
         }
 )
 @EntityListeners(AuditingEntityListener.class)
@@ -35,22 +34,41 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @Column(nullable = false) private String title;
-    @Setter @Column(nullable = false, length = 10000) private String content;
+    @Setter
+    @Column(nullable = false)
+    private String title;
+    @Setter
+    @Column(nullable = false, length = 10000)
+    private String content;
 
-    @Setter private String hashtag;
+    @Setter
+    private String hashtag;
 
     @ToString.Exclude
     @OrderBy("id")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
-    @CreatedDate private LocalDateTime createdAt;
-    @CreatedBy @Column(nullable = false, length = 100) private String createdBy;
-    @LastModifiedDate private LocalDateTime modifiedAt;
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy;
+    @CreatedDate
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    protected Article() {}
+    @CreatedBy
+    @Column(nullable = false, length = 100)
+    private String createdBy;
+
+    @LastModifiedDate
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt;
+
+    @LastModifiedBy
+    @Column(nullable = false, length = 100)
+    private String modifiedBy;
+
+    protected Article() {
+    }
 
     private Article(String title, String content, String hashtag) {
         this.title = title;
