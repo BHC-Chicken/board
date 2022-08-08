@@ -43,6 +43,19 @@ class JpaRepositoryTest {
                 .hasSize(123);
     }
 
+    @DisplayName("insert 테스트")
+    @Test
+    void givenTestData_whenInserting_thenWorksFine() {
+        // Given
+        long previousCount = articleRepository.count();
+        Article article = Article.of("new title", "new content", "#blue");
+        // When
+        articleRepository.save(article);
+
+        // Then
+        assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
+    }
+
     @DisplayName("update 테스트")
     @Test
     void givenTestData_whenUpdating_thenWorksFine() {
