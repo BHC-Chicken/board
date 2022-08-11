@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 페이지</title>
+</head>
+
+<body>
+<header id="header"></header>
+<main>
+    <form>
+        <label>
+            <select name="search-type">
+                <option>제목</option>
+                <option>본문</option>
+                <option>ID</option>
+                <option>닉네임</option>
+                <option>해시태그</option>
+            </select>
+        </label>
+        <label>
+            <input type="search" placeholder="검색어..." name="search-value">
+        </label>
+    </form>
+    <label>
+        <button type="submit">검색</button>
+    </label>
+    <table>
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>해시태그</th>
+            <th>작성자</th>
+            <th>장성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>first</td>
+            <td>#java</td>
+            <td>park</td>
+            <td>2020-08-12</td>
+        </tr>
+        <tr>
+            <td>second</td>
+            <td>#java</td>
+            <td>park</td>
+            <td>2020-08-12</td>
+        </tr>
+        <tr>
+            <td>third</td>
+            <td>#java</td>
+            <td>park</td>
+            <td>2020-08-12</td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <table>
+            <tr>
+                <td>previous</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>next</td>
+            </tr>
+        </table>
+    </nav>
+</main>
+<footer id="footer"></footer>
+</body>
+</html>
