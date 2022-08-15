@@ -1,11 +1,11 @@
 debug: false
-management.endpoints.web.exposure.include: "*" # actuator ? ??? ???? ?? ??.
+management.endpoints.web.exposure.include: "*"
 
 logging:
   level:
-    com.deploykube.board: debug # ??? ??? ???? ??
+    com.deploykube.board: debug
     org.springframework.web.servlet: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace # JPA ??? query ??? ????. ??? ???? ????
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 spring:
   datasource:
