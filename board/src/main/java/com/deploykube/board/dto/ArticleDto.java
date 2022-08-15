@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import java.time.LocalDateTime;
 
-public record ArticleDto(
+public record ArticleDto( // record 는 getter 와 setter 를 이미 가지고 있다.
         Long id,
         UserAccountDto userAccountDto,
         String title,
