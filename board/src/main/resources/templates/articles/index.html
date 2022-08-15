@@ -12,7 +12,10 @@
 </head>
 
 <body>
-<header id="header"></header>
+<header id="header">
+    헤더 삽입부
+    <hr>
+</header>
 <main class="container">
     <div class="row">
         <div class="card card-margin search-form">
@@ -54,38 +57,40 @@
             </div>
         </div>
     </div>
-<!--    <form>-->
-<!--        <label>-->
-<!--            <select name="search-type">-->
-<!--                <option>제목</option>-->
-<!--                <option>본문</option>-->
-<!--                <option>ID</option>-->
-<!--                <option>닉네임</option>-->
-<!--                <option>해시태그</option>-->
-<!--            </select>-->
-<!--        </label>-->
-<!--        <label>-->
-<!--            <input type="search" placeholder="검색어..." name="search-value">-->
-<!--        </label>-->
-<!--    </form>-->
-<!--    <label>-->
-<!--        <button type="submit">검색</button>-->
-<!--    </label>-->
-    <table class="table">
+    <!--    <form>-->
+    <!--        <label>-->
+    <!--            <select name="search-type">-->
+    <!--                <option>제목</option>-->
+    <!--                <option>본문</option>-->
+    <!--                <option>ID</option>-->
+    <!--                <option>닉네임</option>-->
+    <!--                <option>해시태그</option>-->
+    <!--            </select>-->
+    <!--        </label>-->
+    <!--        <label>-->
+    <!--            <input type="search" placeholder="검색어..." name="search-value">-->
+    <!--        </label>-->
+    <!--    </form>-->
+    <!--    <label>-->
+    <!--        <button type="submit">검색</button>-->
+    <!--    </label>-->
+    <table class="table" id="article-table">
         <thead>
         <tr>
-            <th class="col-6">제목</th>
-            <th class="col-2">해시태그</th>
-            <th class="col-2">작성자</th>
-            <th class="col-2">작성일</th>
+            <th class="title col-6">제목</th>
+            <th class="hashtag col-2">해시태그</th>
+            <th class="user-id col-2">작성자</th>
+            <th class="create-by col-2">작성일</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>first</td>
-            <td>#java</td>
-            <td>park</td>
-            <td>2020-08-12</td>
+            <td class="title"><a>first</a></td>
+            <td class="hashtag">#java</td>
+            <td class="user-id">park</td>
+            <td class="created-at">
+                <time>2020-08-12</time>
+            </td>
         </tr>
         <tr>
             <td>second</td>
@@ -128,7 +133,10 @@
     <!--        </table>-->
     <!--    </nav>-->
 </main>
-<footer id="footer"></footer>
+<footer id="footer">
+    <hr>
+    푸터 삽입부
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
