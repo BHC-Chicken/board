@@ -11,8 +11,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@DisplayName("View 루트 컨트롤러")
 @Import(SecurityConfig.class)
-@WebMvcTest(MainControllerTest.class)
+@WebMvcTest(MainController.class)
 class MainControllerTest {
 
     private final MockMvc mvc;
