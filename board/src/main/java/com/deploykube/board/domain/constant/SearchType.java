@@ -1,4 +1,4 @@
-package com.deploykube.board.domain.type;
+package com.deploykube.board.domain.constant;
 
 import lombok.Getter;
 
