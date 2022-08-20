@@ -36,6 +36,7 @@ public class Article {
 
     @Setter
     @ManyToOne(optional = false)
+    @JoinColumn(name = "userId")
     private UserAccount userAccount;
 
     @Setter

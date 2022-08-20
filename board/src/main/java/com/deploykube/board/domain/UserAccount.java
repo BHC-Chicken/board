@@ -24,11 +24,7 @@ import java.util.Objects;
 @Entity
 public class UserAccount {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Setter
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String userId;
 
     @Setter

@@ -31,15 +31,16 @@ public class ArticleComment {
     private Long id;
 
     @Setter
-    @ManyToOne
-    private UserAccount userAccount;
-
+    @ManyToOne(optional = false)
+    private Article article; // 게시글 (ID)
     @Setter
     @ManyToOne(optional = false)
-    private Article article;
+    @JoinColumn(name = "userId")
+    private UserAccount userAccount; // 유저 정보 (ID)
+
     @Setter
     @Column(nullable = false, length = 500)
-    private String content;
+    private String content; // 본문
 
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
