@@ -1,7 +1,7 @@
 package com.deploykube.board.controller;
 
 import com.deploykube.board.config.SecurityConfig;
-import com.deploykube.board.domain.type.SearchType;
+import com.deploykube.board.domain.constant.SearchType;
 import com.deploykube.board.dto.ArticleWithCommentsDto;
 import com.deploykube.board.dto.UserAccountDto;
 import com.deploykube.board.service.ArticleService;
@@ -98,7 +98,7 @@ class ArticleControllerTest {
         // Given
         Long articleId = 1L;
         long totalCount = 1L;
-        given(articleService.getArticle(articleId)).willReturn(createArticleWithCommentsDto());
+        given(articleService.getArticleWithComments(articleId)).willReturn(createArticleWithCommentsDto());
         given(articleService.getArticleCount()).willReturn(totalCount);
 
         // When & Then
@@ -108,8 +108,9 @@ class ArticleControllerTest {
                 .andExpect(view().name("articles/detail"))
                 .andExpect(model().attributeExists("article"))
                 .andExpect(model().attributeExists("articleComments"))
+                .andExpect(model().attributeExists("articleComments"))
                 .andExpect(model().attribute("totalCount", totalCount));
-        then(articleService).should().getArticle(articleId);
+        then(articleService).should().getArticleWithComments(articleId);
         then(articleService).should().getArticleCount();
     }
 
@@ -214,7 +215,6 @@ class ArticleControllerTest {
 
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
-                1L,
                 "park",
                 "test1234",
                 "test1234@sample.com",
