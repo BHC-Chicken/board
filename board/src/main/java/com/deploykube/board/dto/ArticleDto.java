@@ -1,22 +1,28 @@
 package com.deploykube.board.dto;
 
 import com.deploykube.board.domain.Article;
+import com.deploykube.board.domain.UserAccount;
 
 import java.time.LocalDateTime;
 
 import java.time.LocalDateTime;
 
 public record ArticleDto( // record 는 getter 와 setter 를 이미 가지고 있다.
-        Long id,
-        UserAccountDto userAccountDto,
-        String title,
-        String content,
-        String hashtag,
-        LocalDateTime createdAt,
-        String createdBy,
-        LocalDateTime modifiedAt,
-        String modifiedBy
+                          Long id,
+                          UserAccountDto userAccountDto,
+                          String title,
+                          String content,
+                          String hashtag,
+                          LocalDateTime createdAt,
+                          String createdBy,
+                          LocalDateTime modifiedAt,
+                          String modifiedBy
 ) {
+
+    public static ArticleDto of(UserAccountDto userAccountDto, String title, String content, String hashtag) {
+        return new ArticleDto(null, userAccountDto, title, content, hashtag, null, null, null, null);
+    }
+
     public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
         return new ArticleDto(id, userAccountDto, title, content, hashtag, createdAt, createdBy, modifiedAt, modifiedBy);
     }
@@ -35,9 +41,9 @@ public record ArticleDto( // record 는 getter 와 setter 를 이미 가지고 �
         );
     }
 
-    public Article toEntity() {
+    public Article toEntity(UserAccount userAccount) {
         return Article.of(
-                userAccountDto.toEntity(),
+                userAccount,
                 title,
                 content,
                 hashtag
