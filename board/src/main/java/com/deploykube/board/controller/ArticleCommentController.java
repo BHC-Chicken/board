@@ -2,8 +2,10 @@ package com.deploykube.board.controller;
 
 import com.deploykube.board.dto.UserAccountDto;
 import com.deploykube.board.dto.request.ArticleCommentRequest;
+import com.deploykube.board.dto.security.BoardPrincipal;
 import com.deploykube.board.service.ArticleCommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,19 +19,22 @@ public class ArticleCommentController {
     private final ArticleCommentService articleCommentService;
 
     @PostMapping("/new")
-    public String postNewArticleComment(ArticleCommentRequest articleCommentRequest, Long articleId) {
+    public String postNewArticleComment(ArticleCommentRequest articleCommentRequest,
+                                        @AuthenticationPrincipal BoardPrincipal boardPrincipal
+    ) {
 
-        articleCommentService.saveArticleComment(articleCommentRequest.toDto(UserAccountDto.of(
-                "park", "pw", "test1234@sample.com", null,null
-        )));
+        articleCommentService.saveArticleComment(articleCommentRequest.toDto(boardPrincipal.toDto()));
 
         return "redirect:/articles/" + articleCommentRequest.articleId();
     }
 
     @PostMapping("/{commentId}/delete")
-    public String deleteArticle(@PathVariable Long commentId, Long articleId) {
+    public String deleteArticle(@PathVariable Long commentId,
+                                Long articleId,
+                                @AuthenticationPrincipal BoardPrincipal boardPrincipal
+    ) {
 
-        articleCommentService.deleteArticleComment(commentId);
+        articleCommentService.deleteArticleComment(commentId, boardPrincipal.getUsername());
 
         return "redirect:/articles" + articleId;
     }
